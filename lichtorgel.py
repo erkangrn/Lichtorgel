@@ -36,7 +36,7 @@ while True:
 	daten = np.fromstring(stream.read(4096, exception_on_overflow = False),dtype=np.int16) # Daten einlesen
 	fourier = abs(np.fft.fft(daten).real) # Fast-Fourrier-Transformation
 	frequenz = np.fft.fftfreq(4096,1.0/44100)  # gibt Frequenzen aus den Daten zurück
-	frequenzLautest = frequenz[np.where(fourier == np.max(fourier))[0][0]] # Frequenz mit lautesten Ton auswählen
+	frequenzLautest = frequenz[np.where(fourier == np.max(fourier))[0][0]] # höchste Frequenz auswählen
 	frequenzLautest = int(abs(frequenzLautest)) # in Integer umwandeln und Betrag nehmen
 	print("Frequenz: %d Hz"%frequenzLautest) # Frequenz ausgeben
 	steuerung(frequenzLautest) # LEDs steuern
